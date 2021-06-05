@@ -8,4 +8,17 @@ before_install:
 script:
   - docker run -e CI=true tsugden/docker-react npm run test
 
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "docker-react"
+  env: "Dockerreact-env"
+  bucket-name: "elasticbeanstalk-us-east-2-449895140964"
+  bucket-path: "docker-react"
+  on:
+    branch: master
+  access_key_id: $access_key_id
+  secret_access_key:
+    secure: $secret_access_key
+
 language: generic
